@@ -85,7 +85,8 @@ export const updateProfile = async (req, res) => {
         }
 
         const user = await User.findByIdAndUpdate(req.user._id, updates, { new: true }).select("-password");
-        res.status(200).json(user);
+        
+        res.redirect('/profile');
     } catch (error) {
         console.log("Error in updateProfile controller", error.message);
         res.status(500).json({ error: "Internal Server Error" });
